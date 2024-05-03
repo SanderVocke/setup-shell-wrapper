@@ -11,5 +11,5 @@ runs:
     - name: Setup
       shell: bash
       run: |
-        sudo -E ./setup.sh
+        sudo -E /bin/sh ./setup.sh
       working-directory: ${{ github.action_path }}
