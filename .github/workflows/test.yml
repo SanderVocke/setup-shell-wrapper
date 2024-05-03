@@ -32,4 +32,6 @@ jobs:
       env:
          WRAP_SHELL: ${{ matrix.shell }}
       run: |
-        echo "Running shell: $(ps -o comm= $$)"
+        RESULT=$(ps -o comm= $$)
+        echo "Running shell: $RESULT"
+        [[ "$RESULT" != "${{ matrix.shell }}" ]] && echo "Expected: ${{ matrix.shell }}" && exit 1
