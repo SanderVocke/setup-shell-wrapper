@@ -1,0 +1,34 @@
+name: Test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  checks: write
+
+jobs:
+
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        shell: [ bash, sh ]
+          
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+    - name: Setup wrapper
+      uses: ./
+    - name: Print shell
+      shell: wrap-shell.sh {0}
+      env:
+         WRAP_SHELL: ${{ matrix.shell }}
+      run: echo "Running shell: $0"
