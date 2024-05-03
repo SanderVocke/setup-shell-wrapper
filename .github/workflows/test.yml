@@ -31,4 +31,10 @@ jobs:
       shell: wrap-shell.sh {0}
       env:
          WRAP_SHELL: ${{ matrix.shell }}
-      run: echo "Running shell: $0"
+      run: |
+        RESULT=$(ps -o comm= $$)
+        echo "Running shell: $RESULT"
+        if [ "$RESULT" != "${{ matrix.shell }}" ]; then
+          echo "Expected: ${{ matrix.shell }}"
+          exit 1
+        fi
