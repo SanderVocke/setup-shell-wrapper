@@ -31,4 +31,5 @@ jobs:
       shell: wrap-shell.sh {0}
       env:
          WRAP_SHELL: ${{ matrix.shell }}
-      run: echo "Running shell: $0"
+      run: |
+        echo "Running shell: $0"
