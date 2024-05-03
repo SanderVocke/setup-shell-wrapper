@@ -34,4 +34,4 @@ jobs:
       run: |
         RESULT=$(ps -o comm= $$)
         echo "Running shell: $RESULT"
-        [ "$RESULT" != "${{ matrix.shell }}" ] && echo "Expected: ${{ matrix.shell }}" && exit 1
+        [ "$RESULT" != "${{ matrix.shell }}" ] && exit 1
