@@ -32,4 +32,4 @@ jobs:
       env:
          WRAP_SHELL: ${{ matrix.shell }}
       run: |
-        echo "Running shell: $0"
+        echo "Running shell: $(cat /proc/$$/cmdline)"
