@@ -29,8 +29,9 @@ jobs:
             container_options: "--workdir /"
           
     runs-on: ubuntu-latest
-    container: ${{ matrix.container }}
-    container_options: ${{ matrix.container_options }}
+    container:
+      image: ${{ matrix.container }}
+      options: ${{ matrix.container_options }}
     steps:
     - name: Checkout
       uses: actions/checkout@v4
