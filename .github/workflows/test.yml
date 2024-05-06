@@ -19,7 +19,7 @@ jobs:
       matrix:
         shell: [ bash, sh ]
         container: [ null ]
-        container_options: [ null ]
+        container_options: [ "" ]
         include:
           - shell: bash
             container: quay.io/pypa/manylinux_2_28_x86_64
