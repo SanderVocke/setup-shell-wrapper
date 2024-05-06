@@ -18,8 +18,19 @@ jobs:
       fail-fast: false
       matrix:
         shell: [ bash, sh ]
+        container: [ null ]
+        container_options: [ null ]
+        include:
+          - shell: bash
+            container: quay.io/pypa/manylinux_2_28_x86_64
+            container_options: "--user root --workdir /"
+          - shell: bash
+            container: quay.io/pypa/manylinux_2_28_x86_64
+            container_options: "--workdir /"
           
     runs-on: ubuntu-latest
+    container: ${{ matrix.container }}
+    container_options: ${{ matrix.container_options }}
     steps:
     - name: Checkout
       uses: actions/checkout@v4
