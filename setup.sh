@@ -2,11 +2,11 @@
 
 readonly SCRIPT_PATH=$(readlink "$0")
 readonly SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
-echo "Attempting install to: "$SCRIPT_DIR"/wrap-shell.sh"
-mkdir -p $pwd/abin
-install -v -m755 "$SCRIPT_DIR"/wrap-shell.sh $pwd/abin/wrap-shell.sh
+echo "Attempting install to: /tmp/abin/wrap-shell.sh"
+mkdir -p "/tmp/abin"
+install -v -m755 "$SCRIPT_DIR/wrap-shell.sh" "/tmp/abin/wrap-shell.sh"
 if [ "$?" != "0" ]; then
    echo "Failed, retrying with sudo"
-   sudo install -Dv -m755 "$SCRIPT_DIR"/wrap-shell.sh $pwd/abin/wrap-shell.sh
+   sudo install -v -m755 "$SCRIPT_DIR/wrap-shell.sh" "/tmp/abin/wrap-shell.sh"
 fi
-echo "$pwd/abin" >> $GITHUB_PATH
+echo "/tmp/abin" >> $GITHUB_PATH

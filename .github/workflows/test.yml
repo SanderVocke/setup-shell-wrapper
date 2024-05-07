@@ -20,7 +20,7 @@ jobs:
         shell: [ bash, sh ]
         container: [ null ]
         container_options: [ "-" ]
-        os: [ ubuntu-latest, windows-latest, macos-latest ]
+        os: [ ubuntu-latest, windows-latest, macos-11, macos-12, macos-13, macos-14 ]
         include:
           - shell: bash
             container: quay.io/pypa/manylinux_2_28_x86_64
@@ -47,4 +47,8 @@ jobs:
       env:
          WRAP_SHELL: ${{ matrix.shell }}
       run: |
-        echo "Running: $@"
+        echo "Running: $__RUNNING_SHELL"
+        if [ "$__RUNNING_SHELL" != "${{ matrix.shell }}" ]; then
+          echo "Expected: ${{ matrix.shell }}"
+          exit 1
+        fi
