@@ -17,6 +17,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        prepare: [ 'echo "nothing to prepare."' ]
         shell: [ bash, sh ]
         container: [ null ]
         container_options: [ "-" ]
@@ -34,24 +35,31 @@ jobs:
             container: debian
             container_options: "--workdir /"
             os: ubuntu-latest
+            prepare: 'DEBIAN_FRONTEND=noninteractive sudo apt-get -y update && sudo apt-get -y install git'
           - shell: sh
             container: debian
             container_options: "--workdir /"
             os: ubuntu-latest
+            prepare: 'DEBIAN_FRONTEND=noninteractive sudo apt-get -y update && sudo apt-get -y install git'
           - shell: bash
             container: archlinux
             container_options: "--workdir /"
             os: ubuntu-latest
+            prepare: 'sudo pacman -S git'
           - shell: sh
             container: archlinux
             container_options: "--workdir /"
             os: ubuntu-latest
+            prepare: 'sudo pacman -S git'
           
     runs-on: ${{ matrix.os }}
     container:
       image: ${{ matrix.container }}
       options: ${{ matrix.container_options }}
     steps:
+    - name: Prepare
+      shell: bash
+      run: ${{ matrix.prepare }}
     - name: Checkout
       uses: actions/checkout@v4
       with:
