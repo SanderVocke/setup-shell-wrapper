@@ -35,22 +35,22 @@ jobs:
             container: debian
             container_options: "--workdir /"
             os: ubuntu-latest
-            prepare: 'DEBIAN_FRONTEND=noninteractive sudo apt-get -y update && sudo apt-get -y install git'
+            prepare: 'DEBIAN_FRONTEND=noninteractive apt-get -y update && apt-get -y install git'
           - shell: sh
             container: debian
             container_options: "--workdir /"
             os: ubuntu-latest
-            prepare: 'DEBIAN_FRONTEND=noninteractive sudo apt-get -y update && sudo apt-get -y install git'
+            prepare: 'DEBIAN_FRONTEND=noninteractive apt-get -y update && apt-get -y install git'
           - shell: bash
             container: archlinux
             container_options: "--workdir /"
             os: ubuntu-latest
-            prepare: 'sudo pacman -S git'
+            prepare: 'pacman -S git'
           - shell: sh
             container: archlinux
             container_options: "--workdir /"
             os: ubuntu-latest
-            prepare: 'sudo pacman -S git'
+            prepare: 'pacman -S git'
           
     runs-on: ${{ matrix.os }}
     container:

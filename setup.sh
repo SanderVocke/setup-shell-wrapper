@@ -9,7 +9,7 @@ if [ "$?" != "0" ]; then
    sudo mkdir -p /tmp/bin
 fi
 
-install -v -m755 "$SCRIPT_DIR/wrap-shell.sh" "/tmp/bin/wrap-shell"
+install -v -m755 "$SCRIPT_DIR/wrap-shell" "/tmp/bin/wrap-shell"
 if [ "$?" != "0" ]; then
    echo "Failed, retrying with sudo"
    sudo install -v -m755 "$SCRIPT_DIR/wrap-shell" "/tmp/bin/wrap-shell"
