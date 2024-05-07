@@ -19,7 +19,8 @@ jobs:
       matrix:
         shell: [ bash, sh ]
         container: [ null ]
-        container_options: [ "--hello-world" ]
+        container_options: [ "-" ]
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
         include:
           - shell: bash
             container: quay.io/pypa/manylinux_2_28_x86_64
@@ -28,7 +29,7 @@ jobs:
             container: quay.io/pypa/manylinux_2_28_x86_64
             container_options: "--workdir /"
           
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     container:
       image: ${{ matrix.container }}
       options: ${{ matrix.container_options }}
