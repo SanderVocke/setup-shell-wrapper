@@ -9,17 +9,17 @@ if [ "$?" != "0" ]; then
    sudo mkdir -p /tmp/bin
 fi
 
-install -v -m755 "$SCRIPT_DIR/wrap-shell.sh" "/tmp/bin/wrap-shell.sh"
+install -v -m755 "$SCRIPT_DIR/wrap-shell.sh" "/tmp/bin/wrap-shell"
 if [ "$?" != "0" ]; then
    echo "Failed, retrying with sudo"
-   sudo install -v -m755 "$SCRIPT_DIR/wrap-shell.sh" "/tmp/bin/wrap-shell.sh"
+   sudo install -v -m755 "$SCRIPT_DIR/wrap-shell" "/tmp/bin/wrap-shell"
 fi
 
 if [ ! -z "$INSTALL_BAT" ]; then
-   install -v -m755 "$SCRIPT_DIR/wrap-shell.sh.bat" "/bin/wrap-shell.sh.bat"
+   install -v -m755 "$SCRIPT_DIR/wrap-shell.bat" "/bin/wrap-shell.bat"
    if [ "$?" != "0" ]; then
       echo "Failed, retrying with sudo"
-      sudo install -v -m755 "$SCRIPT_DIR/wrap-shell.sh.bat" "/bin/wrap-shell.sh.bat"
+      sudo install -v -m755 "$SCRIPT_DIR/wrap-shell.bat" "/bin/wrap-shell.bat"
    fi
 fi
 
