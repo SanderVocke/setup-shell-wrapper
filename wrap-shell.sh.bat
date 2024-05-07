@@ -1,1 +1,1 @@
-bash /bin/wrap-shell.sh %*
+bash -c "/bin/wrap-shell.sh %*"
