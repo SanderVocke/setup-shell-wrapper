@@ -1,12 +1,26 @@
 #!/bin/sh
 
-readonly SCRIPT_PATH=$(readlink "$0")
 readonly SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
-echo "Attempting install to: /tmp/abin/wrap-shell.sh"
-mkdir -p "/tmp/abin"
-install -v -m755 "$SCRIPT_DIR/wrap-shell.sh" "/tmp/abin/wrap-shell.sh"
+echo "Attempting install to: /tmp/bin"
+
+mkdir -p /tmp/bin
 if [ "$?" != "0" ]; then
    echo "Failed, retrying with sudo"
-   sudo install -v -m755 "$SCRIPT_DIR/wrap-shell.sh" "/tmp/abin/wrap-shell.sh"
+   sudo mkdir -p /tmp/bin
 fi
-echo "/tmp/abin" >> $GITHUB_PATH
+
+install -v -m755 "$SCRIPT_DIR/wrap-shell" "/tmp/bin/wrap-shell"
+if [ "$?" != "0" ]; then
+   echo "Failed, retrying with sudo"
+   sudo install -v -m755 "$SCRIPT_DIR/wrap-shell" "/tmp/bin/wrap-shell"
+fi
+
+if [ ! -z "$INSTALL_BAT" ]; then
+   install -v -m755 "$SCRIPT_DIR/wrap-shell.bat" "/bin/wrap-shell.bat"
+   if [ "$?" != "0" ]; then
+      echo "Failed, retrying with sudo"
+      sudo install -v -m755 "$SCRIPT_DIR/wrap-shell.bat" "/bin/wrap-shell.bat"
+   fi
+fi
+
+echo "/tmp/bin" >> $GITHUB_PATH

@@ -17,10 +17,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        os: [ ubuntu-latest, windows-latest, macos-11, macos-12, macos-13, macos-14 ]
         shell: [ bash, sh ]
         container: [ null ]
         container_options: [ "-" ]
-        os: [ ubuntu-latest, windows-latest, macos-11, macos-12, macos-13, macos-14 ]
+        prepare: [ 'echo "nothing to prepare."' ]
         include:
           - shell: bash
             container: quay.io/pypa/manylinux_2_28_x86_64
@@ -30,12 +31,35 @@ jobs:
             container: quay.io/pypa/manylinux_2_28_x86_64
             container_options: "--workdir /"
             os: ubuntu-latest
+          - shell: bash
+            container: debian
+            container_options: "--workdir /"
+            os: ubuntu-latest
+            prepare: 'DEBIAN_FRONTEND=noninteractive apt-get -y update && apt-get -y install git'
+          - shell: sh
+            container: debian
+            container_options: "--workdir /"
+            os: ubuntu-latest
+            prepare: 'DEBIAN_FRONTEND=noninteractive apt-get -y update && apt-get -y install git'
+          - shell: bash
+            container: archlinux
+            container_options: "--workdir /"
+            os: ubuntu-latest
+            prepare: 'pacman --noconfirm -Sy && pacman --noconfirm -S git'
+          - shell: sh
+            container: archlinux
+            container_options: "--workdir /"
+            os: ubuntu-latest
+            prepare: 'pacman --noconfirm -Sy && pacman --noconfirm -S git'
           
     runs-on: ${{ matrix.os }}
     container:
       image: ${{ matrix.container }}
       options: ${{ matrix.container_options }}
     steps:
+    - name: Prepare
+      shell: bash
+      run: ${{ matrix.prepare }}
     - name: Checkout
       uses: actions/checkout@v4
       with:
@@ -43,7 +67,7 @@ jobs:
     - name: Setup wrapper
       uses: ./
     - name: Print shell
-      shell: sh wrap-shell.sh {0}
+      shell: wrap-shell {0}
       env:
          WRAP_SHELL: ${{ matrix.shell }}
       run: |
