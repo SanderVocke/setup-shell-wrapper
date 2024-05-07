@@ -16,10 +16,10 @@ steps:
       shell: wrap-shell {0}
       env:
         WRAP_SHELL: bash
-      run: echo $0   # output: "bash"
+      run: echo "hello world" # executes in Bash
     - name: run command in sh
       shell: wrap-shell {0}
       env:
         WRAP_SHELL: sh
-      run: echo $0   # output: "sh"
+      run: echo "hello world" # executes in sh
 ```
