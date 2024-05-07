@@ -7,3 +7,4 @@ if [ "$?" != "0" ]; then
    echo "Failed, retrying with sudo"
    sudo install -v -m755 "$SCRIPT_DIR/wrap-shell.sh" "/bin/wrap-shell.sh"
 fi
+echo "/bin" >> $GITHUB_PATH
