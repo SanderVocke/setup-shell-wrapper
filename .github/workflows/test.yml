@@ -43,7 +43,7 @@ jobs:
     - name: Setup wrapper
       uses: ./
     - name: Print shell
-      shell: sh wrap-shell.sh {0}
+      shell: wrap-shell.sh {0}
       env:
          WRAP_SHELL: ${{ matrix.shell }}
       run: |
