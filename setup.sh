@@ -1,6 +1,6 @@
 #!/bin/sh
 
-readonly SCRIPT_PATH=$(readlink -f "$0")
+readonly SCRIPT_PATH=$(readlink "$0")
 readonly SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
 echo "Attempting install to: "$SCRIPT_DIR"/wrap-shell.sh"
 mkdir -p $pwd/abin
