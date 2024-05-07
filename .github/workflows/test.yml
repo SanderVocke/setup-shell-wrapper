@@ -45,12 +45,12 @@ jobs:
             container: archlinux
             container_options: "--workdir /"
             os: ubuntu-latest
-            prepare: 'pacman --noconfirm -Sy git'
+            prepare: 'pacman --noconfirm -Sy && pacman --noconfirm -S git'
           - shell: sh
             container: archlinux
             container_options: "--workdir /"
             os: ubuntu-latest
-            prepare: 'pacman --noconfirm -Sy git'
+            prepare: 'pacman --noconfirm -Sy && pacman --noconfirm -S git'
           
     runs-on: ${{ matrix.os }}
     container:
