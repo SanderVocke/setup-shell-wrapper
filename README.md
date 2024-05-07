@@ -11,12 +11,12 @@ runs-on: ubuntu-latest
 steps:
     - uses: sandervocke/setup-shell-wrapper@v1
     - name: run command in bash
-      shell: wrap-shell.sh {0}
+      shell: sh wrap-shell.sh {0}
       env:
         WRAP_SHELL: bash
       run: echo $0   # output: "bash"
     - name: run command in sh
-      shell: wrap-shell.sh {0}
+      shell: sh wrap-shell.sh {0}
       env:
         WRAP_SHELL: sh
       run: echo $0   # output: "sh"
