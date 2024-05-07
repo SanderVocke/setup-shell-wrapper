@@ -17,11 +17,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        prepare: [ 'echo "nothing to prepare."' ]
+        os: [ ubuntu-latest, windows-latest, macos-11, macos-12, macos-13, macos-14 ]
         shell: [ bash, sh ]
         container: [ null ]
         container_options: [ "-" ]
-        os: [ ubuntu-latest, windows-latest, macos-11, macos-12, macos-13, macos-14 ]
+        prepare: [ 'echo "nothing to prepare."' ]
         include:
           - shell: bash
             container: quay.io/pypa/manylinux_2_28_x86_64
@@ -67,7 +67,7 @@ jobs:
     - name: Setup wrapper
       uses: ./
     - name: Print shell
-      shell: wrap-shell.sh {0}
+      shell: wrap-shell {0}
       env:
          WRAP_SHELL: ${{ matrix.shell }}
       run: |

@@ -1,1 +1,0 @@
-bash -c "/tmp/bin/wrap-shell.sh %*"
