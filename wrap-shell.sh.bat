@@ -1,0 +1,1 @@
+bash /bin/wrap-shell.sh %*
