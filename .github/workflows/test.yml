@@ -45,12 +45,12 @@ jobs:
             container: archlinux
             container_options: "--workdir /"
             os: ubuntu-latest
-            prepare: 'pacman -S git'
+            prepare: 'pacman -Sy git'
           - shell: sh
             container: archlinux
             container_options: "--workdir /"
             os: ubuntu-latest
-            prepare: 'pacman -S git'
+            prepare: 'pacman -Sy git'
           
     runs-on: ${{ matrix.os }}
     container:
