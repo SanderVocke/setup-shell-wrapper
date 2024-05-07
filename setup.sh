@@ -15,10 +15,12 @@ if [ "$?" != "0" ]; then
    sudo install -v -m755 "$SCRIPT_DIR/wrap-shell.sh" "/tmp/bin/wrap-shell.sh"
 fi
 
-install -v -m755 "$SCRIPT_DIR/wrap-shell.sh.bat" "/tmp/bin/wrap-shell.sh.bat"
-if [ "$?" != "0" ]; then
-   echo "Failed, retrying with sudo"
-   sudo install -v -m755 "$SCRIPT_DIR/wrap-shell.sh.bat" "/tmp/bin/wrap-shell.sh.bat"
+if [ ! -z "$INSTALL_BAT" ]; then
+   install -v -m755 "$SCRIPT_DIR/wrap-shell.sh.bat" "/bin/wrap-shell.sh.bat"
+   if [ "$?" != "0" ]; then
+      echo "Failed, retrying with sudo"
+      sudo install -v -m755 "$SCRIPT_DIR/wrap-shell.sh.bat" "/bin/wrap-shell.sh.bat"
+   fi
 fi
 
 echo "/tmp/bin" >> $GITHUB_PATH
