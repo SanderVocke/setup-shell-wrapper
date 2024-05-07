@@ -30,6 +30,22 @@ jobs:
             container: quay.io/pypa/manylinux_2_28_x86_64
             container_options: "--workdir /"
             os: ubuntu-latest
+          - shell: bash
+            container: debian
+            container_options: "--workdir /"
+            os: ubuntu-latest
+          - shell: sh
+            container: debian
+            container_options: "--workdir /"
+            os: ubuntu-latest
+          - shell: bash
+            container: archlinux
+            container_options: "--workdir /"
+            os: ubuntu-latest
+          - shell: sh
+            container: archlinux
+            container_options: "--workdir /"
+            os: ubuntu-latest
           
     runs-on: ${{ matrix.os }}
     container:
