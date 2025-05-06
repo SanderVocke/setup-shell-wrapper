@@ -51,6 +51,10 @@ jobs:
             container_options: "--workdir /"
             os: ubuntu-latest
             prepare: 'pacman --noconfirm -Sy && pacman --noconfirm -S git'
+          - shell: "bash -c bash"
+            container: debian
+            container_options: "--workdir /"
+            os: ubuntu-latest
           
     runs-on: ${{ matrix.os }}
     container:
