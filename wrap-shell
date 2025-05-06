@@ -5,4 +5,4 @@ if [ -n "$__SETUP_SHELL_WRAPPER_VERBOSE" ]; then
   echo "setup-shell-wrapper: Running in shell $WRAP_SHELL: $@"
 fi
 export __RUNNING_SHELL=$WRAP_SHELL
-$WRAP_SHELL $@
+$WRAP_SHELL "$@"
