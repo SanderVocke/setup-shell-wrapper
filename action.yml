@@ -23,7 +23,7 @@ runs:
     - name: Setup
       shell: bash
       run: |
-        if [ "${{ runner.os }}" == "Windows" ]; then
+        if [ "${{ runner.os }}" = "Windows" ]; then
            export INSTALL_BAT="true"
         fi
         /bin/sh ./setup.sh
