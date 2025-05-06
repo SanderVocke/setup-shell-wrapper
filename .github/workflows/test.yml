@@ -66,6 +66,8 @@ jobs:
         submodules: recursive
     - name: Setup wrapper
       uses: ./
+      with:
+          verbose: true
     - name: Print shell
       shell: wrap-shell {0}
       env:
