@@ -55,6 +55,7 @@ jobs:
             container: debian
             container_options: "--workdir /"
             os: ubuntu-latest
+            prepare: 'DEBIAN_FRONTEND=noninteractive apt-get -y update && apt-get -y install git'
           
     runs-on: ${{ matrix.os }}
     container:
