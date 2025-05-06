@@ -5,9 +5,21 @@ branding:
    color: blue
    icon: box
 
+inputs:
+  verbose:
+    description: 'Enable verbose output'
+    required: false
+    default: false
+
 runs:
   using: composite
   steps:
+    - name: Env setup for verbosity
+      if: inputs.verbose == 'true'
+      shell: bash
+      run: |
+        echo "__SETUP_SHELL_WRAPPER_VERBOSE=true" | tee -a $GITHUB_ENV
+    
     - name: Setup
       shell: bash
       run: |
